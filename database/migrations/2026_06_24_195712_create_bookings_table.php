@@ -16,7 +16,7 @@ return new class extends Migration
     Schema::create('bookings', function (Blueprint $table) {
         $table->id();
 
-        $table->unsignedInteger('listing_id');
+        $table->foreignId('listing_id')->constrained()->onDelete('cascade');
 
         $table->string('client_name');
 
@@ -30,10 +30,7 @@ return new class extends Migration
 
         $table->timestamps();
 
-        $table->foreign('listing_id')
-              ->references('id')
-              ->on('listings')
-              ->onDelete('cascade');
+       
     });
 }
 
